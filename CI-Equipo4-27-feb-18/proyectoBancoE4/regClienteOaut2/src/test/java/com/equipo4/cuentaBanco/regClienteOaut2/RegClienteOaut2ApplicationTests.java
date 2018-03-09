@@ -1,4 +1,4 @@
-package com.example.cuenta_bancoEquipo4;
+package com.equipo4.cuentaBanco.regClienteOaut2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CuentaBancoEquipo4ApplicationTests {
+public class RegClienteOaut2ApplicationTests {
 
 	@Test
 	public void contextLoads() {
