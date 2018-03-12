@@ -1,34 +1,35 @@
 package proyecto_equipo4.controller;
 
-//import proyecto_equipo4.model.Client4;
-//import proyecto_equipo4.repository.RepositoryCLient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-//import javax.validation.Valid;
+import proyecto_equipo4.model.Cliente_Insert;
+import proyecto_equipo4.model.Cliente_Output;
+import proyecto_equipo4.service.ClientService;
 
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.jpa.repository.JpaRepository;
+import javax.validation.Valid;
 
-@Controller
-public class Equipo4Controller 
-{
-    //@Autowired
-	//RepositoryCLient repositoryClien;
-    
-	//craete a new Clien
-	//@PostMapping("/")
-	//public Client4 createClient(@Valid @RequestBody Client4 clien4) 
-	//{
-	//  return repositoryClien.save(clien4);
-   //}
+//import com.storedprocedures.services.StoredService;
+
 	
-	@RequestMapping("/saludo")
-	public String saludo()
-	{
-		return "hola";
-	}//Fin request mapping /saludo
+	@RestController
+	public class Equipo4Controller {
+		@Autowired
+		@Qualifier("storedservice")
+		private ClientService storedService;
+
+		@RequestMapping(value = "/executestored", method = RequestMethod.POST)
+		@ResponseBody
+		public Cliente_Output alta(@RequestBody Cliente_Insert input) {
+			return storedService.execute(input);
+		}
 
 }
