@@ -6,6 +6,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService
 {
-	private RepositoryCLient repositoryClient;	
+	private RepositoryCLient repositoryClient;
+
+	public RepositoryCLient getRepositoryClient() {
+		return repositoryClient;
+	}
+
+	public void setRepositoryClient(RepositoryCLient repositoryClient) {
+		this.repositoryClient = repositoryClient;
+	}	
 }
 
