@@ -1,53 +1,52 @@
 package proyecto_equipo4.service;
 
-
 import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.object.StoredProcedure;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.stereotype.Service;
 
+import proyecto_equipo4.model.Cliente_Insert;
+import proyecto_equipo4.model.Cliente_Output;
 
-@Service("storedservice")
-public class ClientService extends StoredProcedure
-{
-	private static final String SPROC_NAME = "SPFinal1";
+@Service("ssp_equipo4")
+public class ClientService extends StoredProcedure {
+	
+	private static final String STORED_PRO = "setData";
 	
 	@Autowired
-	StoredService(DataSource dataSource) {
-		super(dataSource, SPROC_NAME);
-		declareParameter(new SqlParameter("name", Types.VARCHAR));
-		declareParameter(new SqlParameter("addess", Types.VARCHAR));
-		declareParameter(new SqlParameter("email", Types.VARCHAR));
-		declareParameter(new SqlParameter("phone", Types.VARCHAR));
-		declareParameter(new SqlParameter("saldo", Types.DECIMAL));
-		declareParameter(new SqlParameter("ejecutiveEmail", Types.VARCHAR));
+	ClientService(DataSource dataSource) {
+		super(dataSource, STORED_PRO);
+		declareParameter(new SqlParameter("NOMBRE", Types.VARCHAR));
+		declareParameter(new SqlParameter("DIRECCION", Types.VARCHAR));
+		declareParameter(new SqlParameter("EMAIL", Types.VARCHAR));
+		declareParameter(new SqlParameter("TELEFONO", Types.VARCHAR));
+		declareParameter(new SqlParameter("SALDO", Types.FLOAT));
+		declareParameter(new SqlParameter("EJECUTIVO", Types.VARCHAR));
 		
 		
-		declareParameter(new SqlOutParameter("idClienteOut", Types.INTEGER));
-		declareParameter(new SqlOutParameter("idCuentaOut", Types.INTEGER));
-	    declareParameter(new SqlOutParameter("saldoOut", Types.DECIMAL));
+		declareParameter(new SqlOutParameter("ID_CTE_OUT", Types.INTEGER));
+		declareParameter(new SqlOutParameter("ID_CUENTA_OUT", Types.INTEGER));
+	    declareParameter(new SqlOutParameter("SALDO_OUT", Types.FLOAT));
 	    compile();
 	}
 	
-	public OutputData execute(InputData input) {
+	public Cliente_Output execute(Cliente_Insert input) {
 		Map<String, Object> inParams = new HashMap<String, Object>();
-		inParams.put("name", input.getName());
-		inParams.put("addess", input.getAddress());
-		inParams.put("email", input.getEmail());
-		inParams.put("phone", input.getPhone());
-		inParams.put("saldo", input.getAmount());
-		inParams.put("ejecutiveEmail", input.getExcecutive());
+		inParams.put("NOMBRE", input.getNombre());
+		inParams.put("DIRECCION", input.getDireccion());
+		inParams.put("EMAIL", input.getEmail());
+		inParams.put("TELEFONO", input.getTelefono());
+		inParams.put("SALDO", input.getSaldo());
+		inParams.put("EJECUTIVO", input.getEjecutivo());
 
 		Map<String, Object> out = super.execute(inParams);
-		out.put("idClienteOut", String.format("%08d", out.get("idClienteOut")));
-		return new OutputData(out);
+		out.put("ID_CTE_OUT", String.format("%08d", out.get("ID_CTE_OUT")));
+		return new Cliente_Output(out);
 	}	
 }
 
