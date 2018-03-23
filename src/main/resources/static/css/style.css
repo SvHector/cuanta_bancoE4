@@ -91,7 +91,8 @@ input {
 	width: 328px;
 }
 
-#login fieldset input[type="submit"] {
+#login fieldset input[type="submit"],
+#login fieldset input[type="button"] {
 	background-color: #33cc77;
 	color: #fff;
 	display: block;

@@ -21,25 +21,79 @@
 </head>
 
 <body>
-	
-			<div id="la" style="display: none;"></div>
-			
-			<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" align="center"></div>
-			
+
+	<div id="login">
+
+		<h2>
+			<span class="fontawesome-lock"></span>Alta Cliente
+		</h2>
+
+		<form action="javascript:void(0);" method="POST">
+
+			<fieldset>
+
+				<p>
+					<label for="nombre">Nombre</label>
+				</p>
+				<p>
+					<input type="text" id="nombre" value="" placeholder="Nombre">
+				</p>
+
+				<p>
+					<label for="email">E-Mail</label>
+				</p>
+				<p>
+					<input type="email" id="email" value=""
+						placeholder="nombre@dominio.com">
+				</p>
+
+				<p>
+					<label for="telefono">Telefono</label>
+				</p>
+				<p>
+					<input type="tel" id="telefono" value="" placeholder="(554)3894913">
+				</p>
+
+				<p>
+					<label for="direccion">Dirección</label>
+				</p>
+				<p>
+					<input type="text" id="direccion" value="" placeholder="Dirección">
+				</p>
+
+				<p>
+					<input type="submit" name="registar" value="Alta Cliente"
+						id="registrar">
+				</p>
+
+				<p>
+					<input type="submit" onclick="signOut()" id="cerrarsesion"
+						value="Log Out">
+				</p>
+
+				<div id="la" style="display: none;"></div>
+				<div id="logidentity" class="g-signin2" data-onsuccess="onSignIn"
+					data-theme="dark" align="center"></div>
+
+			</fieldset>
 			<script>
 				function onSignIn(googleUser) {
 					// Useful data for your client-side scripts:
 					var profile = googleUser.getBasicProfile();
 					console.log("ID: " + profile.getId()); // Don't send this directly to your server!
 					console.log('Full Name: ' + profile.getName());
-					console.log('Given Name: ' + profile.getGivenName());
-					console.log('Family Name: ' + profile.getFamilyName());
 					console.log("Image URL: " + profile.getImageUrl());
 					console.log("Email: " + profile.getEmail());
 
 					// The ID token you need to pass to your backend:
 					var id_token = googleUser.getAuthResponse().id_token;
+					ejecutivo = profile.getEmail();
 					console.log("ID Token: " + id_token);
+					
+					if (profile.getName() != "") { // si hay un usuario logueado
+						document.getElementById("inicio").disabled = false; // se habilita el hoton de logueo
+						$("#logidentity").hide("slow"); // se esconde el boton de logueo
+						$("#cerrarsesion").show("slow"); // se muestra el boton de cerrar sesion
 				};
 			</script>
 
