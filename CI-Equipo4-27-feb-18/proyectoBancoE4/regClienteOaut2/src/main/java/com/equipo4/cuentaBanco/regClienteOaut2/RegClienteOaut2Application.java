@@ -15,7 +15,7 @@ public class RegClienteOaut2Application {
 		SpringApplication.run(RegClienteOaut2Application.class, args);
 	}
 	
-	@RequestMapping(value="/user")
+	@RequestMapping(value="index")
 	public Principal user(Principal principal) {
 		return principal;
 		
