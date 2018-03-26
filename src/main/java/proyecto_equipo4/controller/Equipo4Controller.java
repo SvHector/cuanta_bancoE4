@@ -17,7 +17,8 @@ import proyecto_equipo4.service.ClientService;
 		@Qualifier("ssp_equipo4")
 		private ClientService ssp_equipo4;
 
-		@RequestMapping(value = "/executestored", method = RequestMethod.POST)
+		//@RequestMapping(value = "/executestored", method = RequestMethod.POST)
+		@RequestMapping(value = "/datos", method = RequestMethod.POST)
 		@ResponseBody
 		public Cliente_Output alta(@RequestBody Cliente_Insert input) {
 			return ssp_equipo4.execute(input);
