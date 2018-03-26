@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+# cuanta_bancoE4
+### Aqui Hector...
+### Aqui Deeny
+### Aqui Mike
+=======
  
 # proyecto_equipo4
 ## Dentro del repo DeenyAH +1
@@ -6,4 +12,5 @@
 
 ## Descargue de nuevo... MvasquezG
   
+>>>>>>> tester
 
