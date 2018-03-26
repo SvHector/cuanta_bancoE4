@@ -75,36 +75,5 @@ public class Cuenta4 implements Serializable {
 	public void setCliente4Idcliente(Cliente4 cliente4Idcliente) {
 		Cliente4Idcliente = cliente4Idcliente;
 	}
-	
-	/*
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (idCuenta2 != null ? idCuenta2.hashCode() : 0);
-		return hash;
-	}
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Cuenta2)) {
-			return false;
-		}
-		Cuenta2 other = (Cuenta2) object;
-		if ((this.idCuenta2 == null && other.idCuenta2 != null)
-				|| (this.idCuenta2 != null && !this.idCuenta2.equals(other.idCuenta2))) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "recursosdom.Cuenta2[ idCuenta2=" + idCuenta2 + " ]";
-	}
-	 */
-	
-	
-	
-
-}// Fin class Account
+}

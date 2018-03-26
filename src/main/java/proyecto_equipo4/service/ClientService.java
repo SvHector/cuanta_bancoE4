@@ -16,21 +16,21 @@ import proyecto_equipo4.model.Cliente_Output;
 @Service("ssp_equipo4")
 public class ClientService extends StoredProcedure {
 	
-	private static final String STORED_PRO = "setData";
+	private static final String STORED_PRO = "SPINSETARDATATABLES";
 	
 	@Autowired
 	ClientService(DataSource dataSource) {
 		super(dataSource, STORED_PRO);
 		declareParameter(new SqlParameter("NOMBRE", Types.VARCHAR));
-		declareParameter(new SqlParameter("DIRECCION", Types.VARCHAR));
 		declareParameter(new SqlParameter("EMAIL", Types.VARCHAR));
 		declareParameter(new SqlParameter("TELEFONO", Types.VARCHAR));
+		declareParameter(new SqlParameter("DIRECCION", Types.VARCHAR));		
 		declareParameter(new SqlParameter("SALDO", Types.FLOAT));
 		declareParameter(new SqlParameter("EJECUTIVO", Types.VARCHAR));
 		
 		
 		declareParameter(new SqlOutParameter("ID_CTE_OUT", Types.INTEGER));
-		declareParameter(new SqlOutParameter("ID_CUENTA_OUT", Types.INTEGER));
+		declareParameter(new SqlOutParameter("EJECUTIVO", Types.INTEGER));
 	    declareParameter(new SqlOutParameter("SALDO_OUT", Types.FLOAT));
 	    compile();
 	}
@@ -46,6 +46,7 @@ public class ClientService extends StoredProcedure {
 
 		Map<String, Object> out = super.execute(inParams);
 		out.put("ID_CTE_OUT", String.format("%08d", out.get("ID_CTE_OUT")));
+		
 		return new Cliente_Output(out);
 	}	
 }

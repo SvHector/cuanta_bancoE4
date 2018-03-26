@@ -14,8 +14,8 @@
 	href="http://fonts.googleapis.com/css?family=Varela+Round">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
-
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 
 </head>
@@ -62,47 +62,49 @@
 				</p>
 
 				<p>
-					<input type="submit" name="registar" value="Alta Cliente"
+					<input type="submit" name="registar" style="display:none;" value="Alta Cliente"
 						id="registrar">
 				</p>
 
-				<p>
-					<input type="submit" onclick="signOut()" id="cerrarsesion"
-						value="Log Out">
-				</p>
+				<center><a href="#" style="display:none;" onclick="signOut();" id="signOut">Sing Out</a></center>
+
 
 				<div id="la" style="display: none;"></div>
-				<div id="logidentity" class="g-signin2" data-onsuccess="onSignIn"
+				<div class="g-signin2" id="loggin" data-onsuccess="onSignIn"
 					data-theme="dark" align="center"></div>
 
 			</fieldset>
-			<script>
-				function onSignIn(googleUser) {
-					// Useful data for your client-side scripts:
-					var profile = googleUser.getBasicProfile();
-					console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-					console.log('Full Name: ' + profile.getName());
-					console.log("Image URL: " + profile.getImageUrl());
-					console.log("Email: " + profile.getEmail());
-
-					// The ID token you need to pass to your backend:
-					var id_token = googleUser.getAuthResponse().id_token;
-					ejecutivo = profile.getEmail();
-					console.log("ID Token: " + id_token);
-					
-					if (profile.getName() != "") { // si hay un usuario logueado
-						document.getElementById("inicio").disabled = false; // se habilita el hoton de logueo
-						$("#logidentity").hide("slow"); // se esconde el boton de logueo
-						$("#cerrarsesion").show("slow"); // se muestra el boton de cerrar sesion
-				};
-			</script>
-
-
-
 		</form>
 
 	</div>
 	<!-- end login -->
+	<script type="text/javascript">
+		function onSignIn(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			var id_token = googleUser.getAuthResponse().id_token;
+			ejecutivo = profile.getEmail();
 
+			if (profile.getId() != "") {
+				$("#loggin").hide("slow");
+				$("#signOut").show("slow");
+				$("#registrar").show("slow");
+			}
+		};
+
+		function signOut() {
+			var auth2 = gapi.auth2.getAuthInstance();
+			auth2.signOut().then(function() {
+				$("#loggin").show("slow");
+				$("#signOut").hide("slow");
+				$("#registrar").hide("slow");
+			});
+		}
+		
+/* 		$("#registrar").click(function(){
+			//$.get();
+			//$.post();
+			//$.ajax({});
+		}); */
+	</script>
 </body>
 </html>

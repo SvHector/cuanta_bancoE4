@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "clienteE4", catalog = "info_banco2", schema = "") // Se define la tabla y la base de datos a utilizar
@@ -71,26 +72,13 @@ public class Cliente4 implements Serializable {
 		this.direccion = direccion;
 	}
 
-	/*	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Cliente2)) {
-			return false;
-		}
-		Cliente2 other = (Cliente2) object;
-		if ((this.idCliente2 == null && other.idCliente2 != null)
-				|| (this.idCliente2 != null && !this.idCliente2.equals(other.idCliente2))) {
-			return false;
-		}
-		return true;
+	@XmlTransient
+	public List<Cuenta4> getCuenta2List() {
+		return cuenta4List;
 	}
 
-	@Override
-	public String toString() {
-		return "recursosdom.Cliente2[ idCliente2=" + idCliente2 + " ]";
-	}*/
+	public void setCuenta2List(List<Cuenta4> cuenta4List) {
+		this.cuenta4List = cuenta4List;
+	}
 	
-	
-	
-
-}// Fin class Client4
+}
